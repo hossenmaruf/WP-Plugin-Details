@@ -178,28 +178,29 @@ function ideapro_form_capture()
         $body .= 'Comments: '.$_POST['comments'].' <br /> ';
 
 
-        add_filter('wp_mail_content_type','set_html_content_type');
+        // add_filter('wp_mail_content_type','set_html_content_type');
         
-        wp_mail($to,$subject,$body);
+        // wp_mail($to,$subject,$body);
 
-        remove_filter('wp_mail_content_type','set_html_content_type');
+        // remove_filter('wp_mail_content_type','set_html_content_type');
 
         /* Insert the information into a comment */
 
-        /*$time = current_time('mysql');
+        // $time = current_time('mysql');
 
-        $data = array(
-            'comment_post_ID' => $post->ID,
-            'comment_content' => $body,
-            'comment_author_IP' => $_SERVER['REMOTE_ADDR'],
-            'comment_date' => $time,
-            'comment_approved' => 1,
-        );
+        // $data = array(
+        //     'comment_post_ID' => $post->ID,
+        //     'comment_content' => $body,
+        //     'comment_author_IP' => $_SERVER['REMOTE_ADDR'],
+        //     'comment_date' => $time,
+        //     'comment_approved' => 1,
+        // );
 
-        wp_insert_comment($data);*/
+        // wp_insert_comment($data);
 
         /* add the submission to the database using the table we created */ 
-        $insertData = $wpdb->get_results(" INSERT INTO ".$wpdb->prefix."form_submissions (data) VALUES ('".$body."') ");
+
+         $wpdb->get_results(" INSERT INTO ".$wpdb->prefix."form_submission (data) VALUES ('".$body."') ");
 
 
 
