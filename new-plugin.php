@@ -255,21 +255,56 @@ function my_custom_portfolio_item() {
     function get_customs_pos() {
 
 
-          $args = array(
+        //   $args = array(
 
-          'post_per_page' => -1 ,
-          'post_type' => 'portfolio_items' ,
+        //   'post_per_page' => -1 ,
+        //   'post_type' => 'portfolio_items' ,
 
-          ) ;
+        //   ) ;
 
-          $myPost = get_post( $args ) ;
+    //       $myPost = get_post( $args ) ;
 
-       foreach ( $myPost as $key => $value ) {
+    //    foreach ( $myPost as $key => $value ) {
 
-              echo $value->ID . '<br />' ;
+    //            print $value -> ID. '<br />' ;
+    //            print $value -> post_title. '<br />' ;
                
 
-       }
+    //    }
+
+
+    //     $sports = new WP_Query(array('post_type'=>'sport','posts_per_page' => -1,));
+
+    //    if($sports->have_posts()) : 
+           
+    //          while($sports->have_posts()) :  $sports->the_post(); 
+                 
+    //                 the_title(); 
+                
+    //           endwhile; 
+            
+    //       endif; wp_reset_postdata() 
+
+      global $post ;
+
+    $args = array(  
+        'post_type' => 'portfolio_items',
+        'post_status' => 'publish',
+        'posts_per_page' => 8, 
+       
+    );
+
+    $loop = new WP_Query( $args ); 
+        
+    while ( $loop->have_posts() ) : $loop->the_post(); 
+        print the_title(); 
+
+        print $post->ID .'<br />' ;
+        // var_dump( $loop) ;
+        the_excerpt(); 
+    endwhile;
+
+    wp_reset_postdata(); 
 
 
     }
