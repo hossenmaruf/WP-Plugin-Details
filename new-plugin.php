@@ -163,20 +163,38 @@ function set_html_content_type()
 
 
 function ideapro_form_capture()
-{
-    global $post,$wpdb;
+	{
+		global $post,$wpdb;
 
-    if(array_key_exists('ideapro_submit_form',$_POST))
-    {
-        $to = "fromhome380@gmail.com";
-        $subject = "Idea Pro Example Site Form Submission";
-        $body = '';
+		if(array_key_exists('ideapro_submit_form',$_POST))
+		{
+			$to = "support@ideapro.com";
+			$subject = "Idea Pro Example Site Form Submission";
+			$body = '';
 
-        $body .= 'Name: '.$_POST['full_name'].' <br /> ';
-        $body .= 'Email: '.$_POST['email_address'].' <br /> ';
-        $body .= 'Phone: '.$_POST['phone_number']. ' <br /> ';
-        $body .= 'Comments: '.$_POST['comments'].' <br /> ';
+			$body .= 'Name: '.$_POST['full_name'].' <br /> ';
+			$body .= 'Email: '.$_POST['email_address'].' <br /> ';
+			$body .= 'Phone: '.$_POST['phone_number']. ' <br /> ';
+			$body .= 'Comments: '.$_POST['comments'].' <br /> ';
 
+
+			
+
+        // $data = array(
+
+
+        //     array (
+
+
+        //         'Name: '.$_POST['full_name'].' <br /> ',
+        //             'Email: '.$_POST['email_address'].' <br /> ',
+        //            'Phone: '.$_POST['phone_number']. ' <br /> ',
+        //             'Comments: '.$_POST['comments'].' <br /> ',
+
+        //     )
+        // ) ;
+
+      
 
         // add_filter('wp_mail_content_type','set_html_content_type');
         
@@ -200,14 +218,63 @@ function ideapro_form_capture()
 
         /* add the submission to the database using the table we created */ 
 
-         $wpdb->get_results(" INSERT INTO ".$wpdb->prefix."form_submission (data) VALUES ('".$body."') ");
+        // $table = $wpdb->prefix.'form_submission';
+        // $format = array('%s','%d');
+
+        $wpdb->get_results(" INSERT INTO ".$wpdb->prefix."form_submission (data) VALUES ('".$body."') ");
+
+    //  $wpdb->insert($table,$data,$format);
 
 
 
     }
 
 }
-add_action('wp_head','ideapro_form_capture');
+
+
+//adding our own portfolio item
+function my_custom_portfolio_item() {
+    $labels = array(
+      'name'               => _x( 'Portfolio items', 'post type general name' ),
+      'singular_name'      => _x( 'Portfolio item', 'post type singular name' ),
+      'menu_name'          => 'Portfolio'
+    );
+      $args = array(
+      'labels'        => $labels,
+      'description'   => 'Holds our custom portfolio items',
+      'public'        => true,
+      'menu_position' => 5,
+      'supports'      => array( 'title', 'editor', 'thumbnail', 'excerpt', 'comments' ),
+      'has_archive'   => true,
+    );
+    register_post_type( 'portfolio_items', $args ); 
+  } 
+  add_action( 'init', 'my_custom_portfolio_item' );
+
+
+    function get_customs_pos() {
+
+
+          $args = array(
+
+          'post_per_page' => -1 ,
+          'post_type' => 'portfolio_items' ,
+
+          ) ;
+
+          $myPost = get_post( $args ) ;
+
+       foreach ( $myPost as $key => $value ) {
+
+              echo $value->ID . '<br />' ;
+               
+
+       }
+
+
+    }
+
+    add_shortcode( 'customs_post_shortcode' , 'get_customs_pos' ) ;
 
 
 
