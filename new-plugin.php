@@ -15,12 +15,44 @@ Text   Domain     : newPlugin
 */
 
 
+/**  customs admin dashboard widget */
+
+function admin_dashboard_widget()
+{
+
+
+    wp_add_dashboard_widget(
+
+
+        'admin_dashboard_widget',
+        'Admin Dashboaed Widget',
+        'admin_dashboard_callback'
+
+    );
+}
+
+
+add_action('wp_dashboard_setup', 'admin_dashboard_widget');
+
+function admin_dashboard_callback()
+{
+
+    echo 'hiii';
+}
+
+
+
+
+
+
+
+
 add_shortcode('new', 'Example_Plugin');
 
 function Example_Plugin()
 {
 
-          $info = 'hello from shortcode';
+    $info = 'hello from shortcode';
     $info .= "<div>  what is this </div>";
 
     $info .= "<p> this is a blocjk post  </p>";
@@ -60,7 +92,7 @@ function my_custom_menu_page()
 
 ?>
 
-        <div id = "setting-error-settings-updated" class = "updated settings-error notice is-dimissible">
+        <div id="setting-error-settings-updated" class="updated settings-error notice is-dimissible">
 
             <strong> settings has been save </strong>
 
@@ -76,20 +108,20 @@ function my_custom_menu_page()
     $footer_scripts = get_option('new_footer_scripts', 'none');
 
     ?>
-    <div class = "wrap">
+    <div class="wrap">
 
         <h2> hello </h2>
 
-        <form method = "post" action = "">
+        <form method="post" action="">
 
-            <label    for   = "header_scripts"> Header scripts</label>
-            <textarea class = "large-text" name = "header_scripts"> <?php print $header_scripts  ?> </textarea>
+            <label for="header_scripts"> Header scripts</label>
+            <textarea class="large-text" name="header_scripts"> <?php print $header_scripts  ?> </textarea>
 
-            <label    for   = "footer_scripts"> footer scripts</label>
-            <textarea class = "large-text" name = "footer_scripts"><?php print $footer_scripts  ?>  </textarea>
+            <label for="footer_scripts"> footer scripts</label>
+            <textarea class="large-text" name="footer_scripts"><?php print $footer_scripts  ?>  </textarea>
 
 
-            <input type = "submit" name = "submit_scripts_update" class = "button button_primary" value = "UPDATE SCRIPTS">
+            <input type="submit" name="submit_scripts_update" class="button button_primary" value="UPDATE SCRIPTS">
 
         </form>
     </div>
@@ -271,14 +303,14 @@ function metabox_display()
 ?>
 
     <label> Sub Title </label>
-    <input type = "text" name = "sub_title" placeholder = "SUB tITLE" class = "widefat" value = "<?php print $sub_title   ?> " />
+    <input type="text" name="sub_title" placeholder="SUB tITLE" class="widefat" value="<?php print $sub_title   ?> " />
 
     <br>
     <br>
 
 
     <label> Author Title </label>
-    <input type = "text" name = "author_name" placeholder = "Author Name" class = "widefat" value = "<?php print $author_name   ?> " />
+    <input type="text" name="author_name" placeholder="Author Name" class="widefat" value="<?php print $author_name   ?> " />
 
     <?php
 
@@ -378,14 +410,14 @@ function get_customs_pos()
 
     $loop = new WP_Query($args);
 
-    while ($loop->have_posts()): $loop->the_post();
+    while ($loop->have_posts()) : $loop->the_post();
 
         $sub_title   = get_post_meta($post->ID, 'sub_title', true);
         $author_name = get_post_meta($post->ID, 'author_name', true);
 
 
-        $content .= $sub_title;
-        $content .= $author_name;
+        $content .= $sub_title . ' <br /> ';
+        $content .= $author_name . ' <br /> ';
 
 
 
