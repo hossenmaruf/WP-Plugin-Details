@@ -21,9 +21,9 @@ function Example_Plugin()
 {
 
           $info = 'hello from shortcode';
-    $info .     = "<div>  what is this </div>";
+    $info .= "<div>  what is this </div>";
 
-    $info . = "<p> this is a blocjk post  </p>";
+    $info .= "<p> this is a blocjk post  </p>";
 
     return $info;
 }
@@ -131,23 +131,23 @@ function ideapro_form()
     /* content variable */
     $content = '';
 
-    $content . = '<form method="post" action="http://new.local/thank-you/">';
+    $content .= '<form method="post" action="http://new.local/thank-you/">';
 
-    $content . = '<input type="text" name="full_name" placeholder="Your Full Name" />';
-    $content . = '<br />';
+    $content .= '<input type="text" name="full_name" placeholder="Your Full Name" />';
+    $content .= '<br />';
 
-    $content . = '<input type="text" name="email_address" placeholder="Email Address" />';
-    $content . = '<br />';
+    $content .= '<input type="text" name="email_address" placeholder="Email Address" />';
+    $content .= '<br />';
 
-    $content . = '<input type="text" name="phone_number" placeholder="Phone Number" />';
-    $content . = '<br />';
+    $content .= '<input type="text" name="phone_number" placeholder="Phone Number" />';
+    $content .= '<br />';
 
-    $content . = '<textarea name="comments" placeholder="Give us your comments"></textarea>';
-    $content . = '<br />';
+    $content .= '<textarea name="comments" placeholder="Give us your comments"></textarea>';
+    $content .= '<br />';
 
-    $content . = '<input type="submit" name="ideapro_submit_form" value="SUBMIT YOUR INFORMATION" />';
+    $content .= '<input type="submit" name="ideapro_submit_form" value="SUBMIT YOUR INFORMATION" />';
 
-    $content . = '</form>';
+    $content .= '</form>';
 
     return $content;
 }
@@ -170,10 +170,10 @@ function ideapro_form_capture()
         $subject = "Idea Pro Example Site Form Submission";
         $body    = '';
 
-        $body . = 'Name: ' . $_POST['full_name'] . ' <br /> ';
-        $body . = 'Email: ' . $_POST['email_address'] . ' <br /> ';
-        $body . = 'Phone: ' . $_POST['phone_number'] . ' <br /> ';
-        $body . = 'Comments: ' . $_POST['comments'] . ' <br /> ';
+        $body .= 'Name: ' . $_POST['full_name'] . ' <br /> ';
+        $body .= 'Email: ' . $_POST['email_address'] . ' <br /> ';
+        $body .= 'Phone: ' . $_POST['phone_number'] . ' <br /> ';
+        $body .= 'Comments: ' . $_POST['comments'] . ' <br /> ';
 
 
 
@@ -384,8 +384,8 @@ function get_customs_pos()
         $author_name = get_post_meta($post->ID, 'author_name', true);
 
 
-        $content . = $sub_title;
-        $content . = $author_name;
+        $content .= $sub_title;
+        $content .= $author_name;
 
 
 
@@ -394,9 +394,9 @@ function get_customs_pos()
 
         <div>
 
-            <?php $content . = $post->ID . '<br />'; ?>
+            <?php $content .= $post->ID . '<br />'; ?>
 
-            <?php $content . = the_title()   ?>
+            <?php $content .= the_title()   ?>
 
             <?php the_excerpt();  ?>
 
