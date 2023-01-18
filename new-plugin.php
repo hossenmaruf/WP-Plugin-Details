@@ -435,7 +435,7 @@ function get_customs_pos()
         </div>
 
 
-<?php
+    <?php
 
 
 
@@ -450,3 +450,45 @@ function get_customs_pos()
 }
 
 add_shortcode('customs_post_shortcode', 'get_customs_pos');
+
+
+// remove wordpress admin menu bar items 
+
+
+function remove_bar_items($wp_admin_bar)
+{
+   global $post ;
+
+     if ( ! is_admin())  {
+        if ($post -> post_type == "post") {
+
+            $wp_admin_bar->remove_node('new-content');
+
+
+        }
+     }
+
+  
+}
+
+add_action('admin_bar_menu', 'remove_bar_items', 800);
+
+
+//or 
+
+function remove_admin_bar_js()
+{
+
+    ?>
+
+    <script>
+        jQuery("#wp-admin-bar-my-account").css("display", "none");
+    </script>
+
+
+<?php
+
+
+}
+
+add_action('admin_footer', 'remove_admin_bar_js');
