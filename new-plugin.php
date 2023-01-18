@@ -1,21 +1,21 @@
 <?php
-
 /**
- * @package  newPlugin
+ * @package  New Plugin
  */
 /*
-Plugin Name       : new plugin
-Plugin URI        : https: //github.com/hossenmaruf
-       Description: This is a custom Plugin
-       Version    : 1.0.0
-       Author     : hossenmaruf
-Author URI        : https: //github.com/hossenmaruf
-       License    : GPLv2 or later
-Text   Domain     : newPlugin
+Plugin Name: New Plugin
+Plugin URI: https://github.com/hossenmaruf
+Description: This is my first attempt on writing a custom Plugin
+Version: 1.0.0
+Author: hossenmaruf
+Author URI: https://github.com/hossenmaruf
+License: GPLv2 or later
+Text Domain: New-Plugin
 */
 
-
 /**  customs admin dashboard widget */
+
+
 
 function admin_dashboard_widget()
 {
@@ -457,18 +457,21 @@ add_shortcode('customs_post_shortcode', 'get_customs_pos');
 
 function remove_bar_items($wp_admin_bar)
 {
-   global $post ;
+    global $post;
 
-     if ( ! is_admin())  {
-        if ($post -> post_type == "post") {
+    // print_r($post) ;
 
-            $wp_admin_bar->remove_node('new-content');
+    //  if ( ! is_admin())  {
+    //     if ($post -> post_type == "post") {
+
+    //         $wp_admin_bar->remove_node('new-content');
 
 
-        }
-     }
+    //     }
 
-  
+    $wp_admin_bar->remove_node('new-content');
+
+    print_r($post);
 }
 
 add_action('admin_bar_menu', 'remove_bar_items', 800);
